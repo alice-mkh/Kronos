@@ -25,7 +25,9 @@ extern "C" {
 
 #if defined(HAVE_LIBGL) || defined(__ANDROID__) || defined(IOS)
 
-#if defined(__LIBRETRO__)
+#if defined(__HIGHSCORE__)
+    #include <epoxy/gl.h>
+#elif defined(__LIBRETRO__)
     #if defined(__APPLE__)
         #include <OpenGL/gl3.h>
         #define GL_TEXTURE_FETCH_BARRIER_BIT      0x00000008

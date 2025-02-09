@@ -1,0 +1,10 @@
+[Highscore]
+Name=Kronos
+Version=@version@
+Commit=@commit@
+Module=kronos-highscore.so
+Authors=Guillaume Duhammel;Theo Berkau;Anders Montonen;devmiyax;FCare;barbudreadmon;
+Copyright=TODO
+Website=https://github.com/FCare/Kronos/
+License=GPL-2.0-or-later
+Platforms=SegaSaturn;
