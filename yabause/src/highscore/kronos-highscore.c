@@ -287,7 +287,7 @@ kronos_core_load_rom (HsCore      *core,
   self->yinit.eepromdir = save_path;
 
   self->context = hs_core_create_gl_context (core,
-                                             HS_GL_PROFILE_CORE,
+                                             HS_GL_API_GL,
                                              4, 3,
                                              HS_GL_FLAGS_FLIPPED | HS_GL_FLAGS_STENCIL);
 
@@ -326,13 +326,15 @@ kronos_core_run_frame (HsCore *core)
   self->frame_drawn = TRUE;
 }
 
-static void
-kronos_core_reset (HsCore *core, gboolean hard)
+static gboolean
+kronos_core_reset (HsCore *core, gboolean hard, GError **error)
 {
   if (hard)
     YabauseResetNoLoad ();
   else
     YabauseResetButton ();
+
+  return TRUE;
 }
 
 static void
