@@ -7,7 +7,8 @@ commit = run_command('git', 'describe', '--always', '--dirty', '--match', '').st
 
 cc = meson.get_compiler('c')
 
-cores_dir = get_option('prefix') / get_option('libdir') / 'highscore' / 'cores'
+libdir = get_option('prefix') / get_option('libdir')
+core_dir = libdir / 'highscore' / 'cores' / 'kronos'
 
 kronos_deps = [
   dependency('highscore-1'),
@@ -198,7 +199,7 @@ shared_library('kronos-highscore',
   c_args: kronos_common_flags + kronos_cflags,
   cpp_args: kronos_common_flags,
   name_prefix: '',
-  install_dir : cores_dir,
+  install_dir : core_dir,
   install : true,
 )
 
@@ -209,6 +210,6 @@ configure_file(
   input: 'kronos.highscore.in',
   output: 'kronos.highscore',
   configuration: descriptor,
-  install_dir: cores_dir,
+  install_dir: core_dir,
   install: true
 )
