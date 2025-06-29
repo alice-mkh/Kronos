@@ -7,8 +7,11 @@ commit = run_command('git', 'describe', '--always', '--dirty', '--match', '').st
 
 cc = meson.get_compiler('c')
 
-libdir = get_option('prefix') / get_option('libdir')
-core_dir = libdir / 'highscore' / 'cores' / 'kronos'
+core_dir = get_option('core_install_dir')
+if core_dir == ''
+  libdir = get_option('prefix') / get_option('libdir')
+  core_dir = libdir / 'highscore' / 'cores' / 'kronos'
+endif
 
 kronos_deps = [
   dependency('highscore-1'),
