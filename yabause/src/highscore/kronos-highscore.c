@@ -473,8 +473,16 @@ kronos_core_init (KronosCore *self)
 }
 
 static void
+kronos_sega_saturn_core_set_controller (HsSegaSaturnCore       *self,
+                                        guint                   player,
+                                        HsSegaSaturnController  controller)
+{
+}
+
+static void
 kronos_sega_saturn_core_init (HsSegaSaturnCoreInterface *iface)
 {
+  iface->set_controller = kronos_sega_saturn_core_set_controller;
 }
 
 GType
