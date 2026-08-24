@@ -6,6 +6,8 @@ Module=kronos-highscore.so
 Authors=Guillaume Duhammel;Theo Berkau;Anders Montonen;devmiyax;FCare;barbudreadmon;
 Copyright=TODO
 Website=https://github.com/FCare/Kronos/
+SourceCode=https://github.com/highscore-emu/Kronos/
+Issues=https://github.com/highscore-emu/Kronos/issues
 License=GPL-2.0-or-later
 Platforms=SegaSaturn;
 
