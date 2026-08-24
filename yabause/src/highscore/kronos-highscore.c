@@ -21,7 +21,6 @@ struct _KronosCore
   HsCore parent_instance;
 
   HsGLContext *context;
-  char *bios_path[HS_SEGA_SATURN_BIOS_N_BIOS];
 
   int last_width;
   int last_height;
@@ -276,7 +275,7 @@ kronos_core_load_rom (HsCore      *core,
 
   self->yinit.cdcoretype = CDCORE_ISO;
   self->yinit.cdpath = rom_paths[0];
-  self->yinit.biospath = self->bios_path[HS_SEGA_SATURN_BIOS_JP];
+  self->yinit.biospath = hs_core_query_firmware_path (core, HS_SEGA_SATURN_FIRMWARE_JAPAN);
   self->yinit.carttype = CART_NONE;
   self->yinit.cartpath = NULL;
   self->yinit.supportdir = NULL;
@@ -428,9 +427,6 @@ kronos_core_finalize (GObject *object)
 {
   KronosCore *self = KRONOS_CORE (object);
 
-  for (int i = 0; i < HS_SEGA_SATURN_BIOS_N_BIOS; i++)
-    g_free (self->bios_path[i]);
-
   core = NULL;
 
   G_OBJECT_CLASS (kronos_core_parent_class)->finalize (object);
@@ -477,24 +473,8 @@ kronos_core_init (KronosCore *self)
 }
 
 static void
-kronos_sega_saturn_core_set_bios_path (HsSegaSaturnCore *core, HsSegaSaturnBios type, const char *path)
-{
-  KronosCore *self = KRONOS_CORE (core);
-
-  g_set_str (&self->bios_path[type], path);
-}
-
-static HsSegaSaturnBios
-kronos_sega_saturn_core_get_used_bios (HsSegaSaturnCore *core)
-{
-  return HS_SEGA_SATURN_BIOS_US_EU;
-}
-
-static void
 kronos_sega_saturn_core_init (HsSegaSaturnCoreInterface *iface)
 {
-  iface->set_bios_path = kronos_sega_saturn_core_set_bios_path;
-  iface->get_used_bios = kronos_sega_saturn_core_get_used_bios;
 }
 
 GType
